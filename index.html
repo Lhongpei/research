@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="title" content="Research | Large-Scale Optimization & AI for Optimization">
+  <meta name="description" content="Research on Large-Scale Optimization and AI for Optimization, including FMIP for MILP and D-PDLP for distributed LP solving.">
+  <meta name="keywords" content="Optimization, MILP, Linear Programming, AI, Machine Learning, Operations Research">
+  
+  <title>Research | Large-Scale Optimization & AI</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/research-theme.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" integrity="sha512-fD9DI5bZw+xOiB/Gy+eOkB0y1Uhj/rU5Z6V3j+oRhQ1L4q4fQW3lW3wO0wH+wO0wH+wO0w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body class="research-theme">
+
+  <!-- Background Effects -->
+  <div class="bg-grid"></div>
+  <div class="bg-glow glow-1"></div>
+  <div class="bg-glow glow-2"></div>
+
+  <!-- Navigation -->
+  <nav class="research-nav">
+    <div class="container">
+      <div class="nav-wrapper">
+        <a href="#" class="nav-logo">
+          <span class="logo-symbol">◆</span>
+          <span class="logo-text">Research</span>
+        </a>
+        <div class="nav-links">
+          <a href="#topics" class="nav-link">Topics</a>
+          <a href="#papers" class="nav-link">Papers</a>
+          <a href="https://github.com/Lhongpei" class="nav-link" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-pulse"></span>
+          Research Overview
+        </div>
+        <h1 class="hero-title">
+          Bridging <span class="gradient-1">AI</span> and 
+          <span class="gradient-2">Optimization</span>
+        </h1>
+        <p class="hero-subtitle">
+          Developing cutting-edge algorithms at the intersection of machine learning 
+          and mathematical optimization to solve large-scale decision-making problems.
+        </p>
+        
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number">2</span>
+            <span class="stat-label">Research Areas</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">2+</span>
+            <span class="stat-label">Publications</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">ICLR/ICML</span>
+            <span class="stat-label">Venues</span>
+          </div>
+        </div>
+
+        <div class="hero-scroll">
+          <a href="#topics" class="scroll-indicator">
+            <span>Explore Topics</span>
+            <i class="fas fa-chevron-down"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Research Topics -->
+  <section id="topics" class="topics-section">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-tag">Research Areas</span>
+        <h2 class="section-title">Research Topics</h2>
+        <p class="section-desc">Click on a topic to explore related publications and projects</p>
+      </div>
+
+      <div class="topics-grid">
+        <!-- AI for Optimization -->
+        <a href="#ai-for-opt" class="topic-card topic-ai">
+          <div class="topic-visual">
+            <div class="topic-icon">
+              <i class="fas fa-brain"></i>
+            </div>
+            <div class="topic-pattern"></div>
+          </div>
+          <div class="topic-content">
+            <span class="topic-label">Topic 01</span>
+            <h3 class="topic-title">AI for Optimization</h3>
+            <p class="topic-desc">
+              Leveraging generative models and deep learning to solve complex 
+              combinatorial optimization problems more efficiently.
+            </p>
+            <div class="topic-meta">
+              <span class="meta-item">
+                <i class="fas fa-project-diagram"></i>
+                Generative Models
+              </span>
+              <span class="meta-item">
+                <i class="fas fa-cube"></i>
+                MILP
+              </span>
+            </div>
+            <div class="topic-arrow">
+              <span>Explore</span>
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </div>
+        </a>
+
+        <!-- Large-Scale Optimization -->
+        <a href="#large-scale" class="topic-card topic-scale">
+          <div class="topic-visual">
+            <div class="topic-icon">
+              <i class="fas fa-server"></i>
+            </div>
+            <div class="topic-pattern"></div>
+          </div>
+          <div class="topic-content">
+            <span class="topic-label">Topic 02</span>
+            <h3 class="topic-title">Large-Scale Optimization</h3>
+            <p class="topic-desc">
+              Scaling optimization algorithms to distributed multi-GPU systems 
+              for industrial-scale problem instances.
+            </p>
+            <div class="topic-meta">
+              <span class="meta-item">
+                <i class="fas fa-microchip"></i>
+                GPU Acceleration
+              </span>
+              <span class="meta-item">
+                <i class="fas fa-network-wired"></i>
+                Distributed
+              </span>
+            </div>
+            <div class="topic-arrow">
+              <span>Explore</span>
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI for Optimization Details -->
+  <section id="ai-for-opt" class="detail-section section-ai">
+    <div class="container">
+      <div class="detail-header">
+        <div class="detail-badge ai-badge">
+          <i class="fas fa-brain"></i>
+        </div>
+        <h2 class="detail-title">AI for Optimization</h2>
+        <p class="detail-subtitle">
+          Using machine learning to learn powerful heuristics for combinatorial optimization problems
+        </p>
+      </div>
+
+      <div class="papers-list">
+        <!-- FMIP Paper -->
+        <div class="paper-card">
+          <div class="paper-status">
+            <span class="status-badge">ICLR 2026</span>
+          </div>
+          <div class="paper-content">
+            <h3 class="paper-title">
+              FMIP: Joint Continuous-Integer Flow for Mixed-Integer Linear Programming
+            </h3>
+            <p class="paper-authors">
+              Hongpei Li, Hui Yuan, Han Zhang, Jianghao Lin, Dongdong Ge, Mengdi Wang, Yinyu Ye
+            </p>
+            <p class="paper-abstract">
+              The first generative framework that models the joint distribution of both integer and 
+              continuous variables for MILP solutions. Achieves <strong>41.34% improvement</strong> over 
+              existing baselines with holistic guidance mechanism.
+            </p>
+            <div class="paper-highlights">
+              <span class="highlight-tag">Flow Matching</span>
+              <span class="highlight-tag">Generative Models</span>
+              <span class="highlight-tag">MILP</span>
+              <span class="highlight-tag highlight-best">41.34% Improvement</span>
+            </div>
+          </div>
+          <div class="paper-actions">
+            <a href="./FMIP/" class="btn-paper btn-primary">
+              <i class="fas fa-external-link-alt"></i>
+              Project Page
+            </a>
+            <a href="./FMIP/static/pdfs/paper.pdf" class="btn-paper btn-secondary" target="_blank">
+              <i class="fas fa-file-pdf"></i>
+              PDF
+            </a>
+            <a href="https://github.com/Lhongpei/FMIP" target="_blank" class="btn-paper btn-tertiary" target="_blank">
+              <i class="fab fa-github"></i>
+              Code
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Large-Scale Optimization Details -->
+  <section id="large-scale" class="detail-section section-scale">
+    <div class="container">
+      <div class="detail-header">
+        <div class="detail-badge scale-badge">
+          <i class="fas fa-server"></i>
+        </div>
+        <h2 class="detail-title">Large-Scale Optimization</h2>
+        <p class="detail-subtitle">
+          Scaling primal-dual algorithms to distributed multi-GPU architectures
+        </p>
+      </div>
+
+      <div class="papers-list">
+        <!-- D-PDLP Paper -->
+        <div class="paper-card">
+          <div class="paper-status">
+            <span class="status-badge">ICML 2026</span>
+          </div>
+          <div class="paper-content">
+            <h3 class="paper-title">
+              D-PDLP: Scaling PDLP to Distributed Multi-GPU Systems
+            </h3>
+            <p class="paper-authors">
+              Hongpei Li, Yicheng Huang, Huikang Liu, Dongdong Ge, Yinyu Ye
+            </p>
+            <p class="paper-abstract">
+              The first distributed PDHG-based solver for large-scale LPs that scales across multiple 
+              GPUs. Achieves <strong>near-linear speedup</strong> with up to 6× faster solving on 8 GPUs 
+              while maintaining full FP64 numerical accuracy.
+            </p>
+            <div class="paper-highlights">
+              <span class="highlight-tag">PDHG</span>
+              <span class="highlight-tag">Multi-GPU</span>
+              <span class="highlight-tag">Distributed</span>
+              <span class="highlight-tag highlight-best">6× Speedup</span>
+            </div>
+          </div>
+          <div class="paper-actions">
+            <a href="./D-PDLP/" class="btn-paper btn-primary">
+              <i class="fas fa-external-link-alt"></i>
+              Project Page
+            </a>
+            <a href="./D-PDLP/static/pdfs/paper.pdf" class="btn-paper btn-secondary" target="_blank">
+              <i class="fas fa-file-pdf"></i>
+              PDF
+            </a>
+            <a href="https://github.com/Lhongpei/D-PDLP" class="btn-paper btn-tertiary" target="_blank">
+              <i class="fab fa-github"></i>
+              Code
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- All Papers Summary -->
+  <section id="papers" class="summary-section">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-tag">Publications</span>
+        <h2 class="section-title">All Papers</h2>
+      </div>
+
+      <div class="papers-table-wrapper">
+        <table class="papers-table">
+          <thead>
+            <tr>
+              <th>Paper</th>
+              <th>Venue</th>
+              <th>Topic</th>
+              <th>Key Result</th>
+              <th>Links</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="paper-name">
+                <strong>FMIP</strong>
+                <span class="paper-subtitle">Joint Continuous-Integer Flow for MILP</span>
+              </td>
+              <td><span class="venue-badge venue-iclr">ICLR 2026</span></td>
+              <td><span class="topic-tag tag-ai">AI for Opt</span></td>
+              <td class="key-result">41.34% improvement</td>
+              <td class="paper-links">
+                <a href="./FMIP/" title="Project Page"><i class="fas fa-globe"></i></a>
+                <a href="https://github.com/Lhongpei/FMIP" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+              </td>
+            </tr>
+            <tr>
+              <td class="paper-name">
+                <strong>D-PDLP</strong>
+                <span class="paper-subtitle">Scaling PDLP to Distributed Multi-GPU</span>
+              </td>
+              <td><span class="venue-badge venue-icml">ICML 2026</span></td>
+              <td><span class="topic-tag tag-scale">Large-Scale</span></td>
+              <td class="key-result">6× speedup on 8 GPUs</td>
+              <td class="paper-links">
+                <a href="./D-PDLP/" title="Project Page"><i class="fas fa-globe"></i></a>
+                <a href="https://github.com/Lhongpei/D-PDLP" title="GitHub"><i class="fab fa-github"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="research-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <span class="footer-logo">◆ Research</span>
+          <p>Large-Scale Optimization & AI for Optimization</p>
+        </div>
+        <div class="footer-social">
+          <a href="https://github.com/Lhongpei" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Research Portfolio</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll Top -->
+  <button class="scroll-top" onclick="scrollToTop()">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script>
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    window.addEventListener('scroll', function() {
+      const scrollTop = document.querySelector('.scroll-top');
+      if (window.pageYOffset > 300) {
+        scrollTop.classList.add('visible');
+      } else {
+        scrollTop.classList.remove('visible');
+      }
+    });
+  </script>
+</body>
+</html>

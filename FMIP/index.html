@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Meta Tags -->
+  <meta name="title" content="FMIP: Joint Continuous-Integer Flow for Mixed-Integer Linear Programming">
+  <meta name="description" content="FMIP is the first generative framework that models the joint distribution of both integer and continuous variables for MILP solutions, achieving 41.34% improvement over SOTA baselines.">
+  <meta name="keywords" content="Mixed-Integer Linear Programming, MILP, Flow Matching, Generative Models, Combinatorial Optimization, Graph Neural Networks">
+  <meta name="author" content="Hongpei Li, Hui Yuan, Han Zhang, Jianghao Lin, Dongdong Ge, Mengdi Wang, Yinyu Ye">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="FMIP: Joint Continuous-Integer Flow for MILP">
+  <meta property="og:description" content="FMIP is the first generative framework that models the joint distribution of both integer and continuous variables for MILP solutions.">
+  <meta property="og:image" content="https://github.com/Lhongpei/FMIP/static/images/new_banner.png">
+  
+  <title>FMIP: Joint Continuous-Integer Flow for MILP | ICLR 2026</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="static/css/fmip-theme.css">
+  
+  <!-- Icons -->
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+</head>
+<body class="fmip-theme">
+
+  <!-- Decorative Background Elements -->
+  <div class="fmip-bg-pattern"></div>
+  <div class="fmip-blob blob-orange"></div>
+  <div class="fmip-blob blob-coral"></div>
+  <div class="fmip-blob blob-amber"></div>
+
+  <!-- Navigation -->
+  <nav class="fmip-nav">
+    <div class="container">
+      <div class="nav-wrapper">
+        <a href="/research/fmip/" class="fmip-logo">
+          <span class="logo-icon">F</span>
+          <span class="logo-text">FMIP</span>
+        </a>
+        <div class="nav-menu">
+          <a href="/research/" class="nav-item"><i class="fas fa-arrow-left"></i> Research</a>
+          <a href="#about" class="nav-item">About</a>
+          <a href="#method" class="nav-item">Method</a>
+          <a href="#results" class="nav-item">Results</a>
+          <a href="https://github.com/Lhongpei/FMIP" class="nav-item nav-cta" target="_blank">
+            <i class="fab fa-github"></i> Code
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="fmip-hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            ICLR 2026
+          </div>
+          <h1 class="hero-title">
+            Joint Continuous-Integer <br>
+            <span class="gradient-text">Flow for MILP</span>
+          </h1>
+          <p class="hero-subtitle">
+            The first generative framework that models the <strong>joint distribution</strong> of both 
+            integer and continuous variables for Mixed-Integer Linear Programming solutions.
+          </p>
+          
+          <div class="hero-metrics">
+            <div class="metric">
+              <span class="metric-value">41.34%</span>
+              <span class="metric-label">Average Improvement</span>
+            </div>
+            <div class="metric">
+              <span class="metric-value">8</span>
+              <span class="metric-label">Benchmarks</span>
+            </div>
+            <div class="metric">
+              <span class="metric-value">SOTA</span>
+              <span class="metric-label">Performance</span>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <a href="https://arxiv.org/pdf/2507.23390" class="btn btn-primary" target="_blank">
+              <i class="fas fa-file-pdf"></i> Read Paper
+            </a>
+            <a href="https://github.com/Lhongpei/FMIP" class="btn btn-secondary" target="_blank">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+          </div>
+
+          <div class="hero-authors">
+            <div class="author-list">
+              <span class="author">Hongpei Li<sup>1</sup></span>
+              <span class="author">Hui Yuan<sup>2</sup></span>
+              <span class="author">Han Zhang<sup>3</sup></span>
+              <span class="author">Jianghao Lin<sup>4*</sup></span>
+              <span class="author">Dongdong Ge<sup>4</sup></span>
+              <span class="author">Mengdi Wang<sup>2</sup></span>
+              <span class="author">Yinyu Ye<sup>5</sup></span>
+            </div>
+            <div class="affiliations">
+              <sup>1</sup>Shanghai University of Finance and Economics · 
+              <sup>2</sup>Princeton University · 
+              <sup>3</sup>National University of Singapore · 
+              <sup>4</sup>Shanghai Jiao Tong University · 
+              <sup>5</sup>Stanford University
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-image-wrapper">
+            <img src="static/images/new_banner.png" alt="FMIP Framework" class="hero-image">
+            <div class="image-glow"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Abstract Section -->
+  <section id="about" class="fmip-section section-abstract">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Overview</span>
+        <h2 class="section-title">Abstract</h2>
+      </div>
+      
+      <div class="abstract-grid">
+        <div class="abstract-card main-card">
+          <p class="lead-text">
+            Mixed-Integer Linear Programming (MILP) is a foundational tool for complex decision-making problems. 
+            However, the NP-hard nature of MILP presents significant computational challenges.
+          </p>
+          <p>
+            While recent generative models have shown promise, they suffer from a critical limitation: 
+            they model the distribution of <em>only the integer variables</em> and fail to capture the 
+            intricate coupling between integer and continuous variables, creating an information bottleneck 
+            and ultimately leading to suboptimal solutions.
+          </p>
+          <p>
+            We propose <span class="fmip-highlight">FMIP</span>, the <strong>first generative framework</strong> 
+            that models the <strong>joint distribution</strong> of both integer and continuous variables 
+            for MILP solutions. Built upon the joint modeling paradigm, a <strong>holistic guidance mechanism</strong> 
+            steers the generative trajectory toward optimality and feasibility during inference.
+          </p>
+        </div>
+        
+        <div class="abstract-card highlight-card">
+          <div class="card-icon">
+            <i class="fas fa-trophy"></i>
+          </div>
+          <h3>Key Achievement</h3>
+          <p class="big-number">41.34%</p>
+          <p class="card-desc">Average relative improvement over existing baselines across 8 standard MILP benchmarks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Innovation Section -->
+  <section id="method" class="fmip-section section-innovation">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-tag blue">Innovation</span>
+        <h2 class="section-title">Why FMIP is Different</h2>
+        <p class="section-subtitle">Compared to existing methods that only model integer variables</p>
+      </div>
+
+      <div class="comparison-showcase">
+        <div class="compare-card old-way">
+          <div class="compare-header">
+            <span class="compare-label">Existing Methods</span>
+            <i class="fas fa-times-circle"></i>
+          </div>
+          <div class="compare-visual">
+            <div class="var-box int-only">Integer Only</div>
+            <div class="arrow">→</div>
+            <div class="result-box partial">Partial Solution</div>
+          </div>
+          <ul class="compare-list">
+            <li><i class="fas fa-times"></i> Model only integer variables</li>
+            <li><i class="fas fa-times"></i> Ignore continuous variables</li>
+            <li><i class="fas fa-times"></i> Information bottleneck</li>
+            <li><i class="fas fa-times"></i> Limited guidance capability</li>
+          </ul>
+        </div>
+
+        <div class="vs-divider">
+          <span>VS</span>
+        </div>
+
+        <div class="compare-card fmip-way">
+          <div class="compare-header">
+            <span class="compare-label">FMIP (Ours)</span>
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <div class="compare-visual">
+            <div class="var-box joint">Integer + Continuous</div>
+            <div class="arrow">→</div>
+            <div class="result-box complete">Complete Solution</div>
+          </div>
+          <ul class="compare-list">
+            <li><i class="fas fa-check"></i> Joint distribution modeling</li>
+            <li><i class="fas fa-check"></i> Full variable coupling</li>
+            <li><i class="fas fa-check"></i> Holistic guidance</li>
+            <li><i class="fas fa-check"></i> Superior performance</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="method-image">
+        <img src="static/images/fmip_compare_exist.png" alt="FMIP vs Existing Methods">
+        <p class="image-caption">FMIP jointly models both variable types with holistic guidance, while existing methods only handle integer variables.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section class="fmip-section section-features">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-tag cyan">Key Features</span>
+        <h2 class="section-title">What Makes FMIP Special</h2>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-tile tile-blue">
+          <div class="tile-icon">
+            <i class="fas fa-project-diagram"></i>
+          </div>
+          <h3>Joint Distribution</h3>
+          <p>First framework to model complete distribution of both integer and continuous variables</p>
+          <span class="tile-number">01</span>
+        </div>
+
+        <div class="feature-tile tile-cyan">
+          <div class="tile-icon">
+            <i class="fas fa-route"></i>
+          </div>
+          <h3>Holistic Guidance</h3>
+          <p>Steers sampling toward optimality and feasibility using complete solution feedback</p>
+          <span class="tile-number">02</span>
+        </div>
+
+        <div class="feature-tile tile-teal">
+          <div class="tile-icon">
+            <i class="fas fa-plug"></i>
+          </div>
+          <h3>Universal Compatible</h3>
+          <p>Works with arbitrary backbone networks and various downstream solvers</p>
+          <span class="tile-number">03</span>
+        </div>
+
+        <div class="feature-tile tile-indigo">
+          <div class="tile-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>SOTA Performance</h3>
+          <p>Superior results on 8 benchmarks with 41.34% average improvement</p>
+          <span class="tile-number">04</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results Section -->
+  <section id="results" class="fmip-section section-results">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-tag indigo">Results</span>
+        <h2 class="section-title">Experimental Performance</h2>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-database"></i></div>
+          <div class="stat-info">
+            <span class="stat-number">8</span>
+            <span class="stat-desc">Benchmark Datasets</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-cogs"></i></div>
+          <div class="stat-info">
+            <span class="stat-number">4</span>
+            <span class="stat-desc">Downstream Solvers</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-network-wired"></i></div>
+          <div class="stat-info">
+            <span class="stat-number">4+</span>
+            <span class="stat-desc">Backbone Networks</span>
+          </div>
+        </div>
+        <div class="stat-card highlight">
+          <div class="stat-icon"><i class="fas fa-arrow-up"></i></div>
+          <div class="stat-info">
+            <span class="stat-number">41%</span>
+            <span class="stat-desc">Avg. Improvement</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results Table -->
+      <div class="results-table-container">
+        <h3 class="table-title">Relative Improvement over Best Baseline</h3>
+        <p class="table-subtitle">FMIP achieves 41.34% average improvement across 8 benchmarks and 4 downstream solvers</p>
+        
+        <div class="table-scroll">
+          <table class="results-table compact">
+            <thead>
+              <tr>
+                <th>Dataset</th>
+                <th class="text-center">ND<br><small>(400s)</small></th>
+                <th class="text-center">PS<br><small>(600s)</small></th>
+                <th class="text-center">PMVB<br><small>(600s)</small></th>
+                <th class="text-center">Apollo<br><small>(800s)</small></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="dataset-cell"><strong>CA</strong> <span class="dataset-tag">Auctions</span></td>
+                <td class="improvement-high">50.6%</td>
+                <td class="improvement-neutral">0.0%</td>
+                <td class="improvement-neutral">0.0%</td>
+                <td class="improvement-neutral">0.0%</td>
+              </tr>
+              <tr>
+                <td class="dataset-cell"><strong>GIS</strong> <span class="dataset-tag">Independent Set</span></td>
+                <td class="improvement-low">4.1%</td>
+                <td class="improvement-med">14.3%</td>
+                <td class="improvement-neutral">0.0%</td>
+                <td class="improvement-neutral">0.0%</td>
+              </tr>
+              <tr>
+                <td class="dataset-cell"><strong>MIS</strong> <span class="dataset-tag">Max Independent Set</span></td>
+                <td class="improvement-high">95.9%</td>
+                <td class="improvement-neutral">0.0%</td>
+                <td class="improvement-high">100%</td>
+                <td class="improvement-high">100%</td>
+              </tr>
+              <tr>
+                <td class="dataset-cell"><strong>FCMNF</strong> <span class="dataset-tag">Network Flow</span></td>
+                <td class="improvement-low">3.5%</td>
+                <td class="improvement-neutral">0.0%</td>
+                <td class="improvement-neutral">0.0%</td>
+                <td class="improvement-neutral">0.0%</td>
+              </tr>
+              <tr>
+                <td class="dataset-cell"><strong>SC</strong> <span class="dataset-tag">Set Covering</span></td>
+                <td class="improvement-high">60.0%</td>
+                <td class="improvement-high">100%</td>
+                <td class="improvement-high">97.9%</td>
+                <td class="improvement-high">100%</td>
+              </tr>
+              <tr>
+                <td class="dataset-cell"><strong>LB</strong> <span class="dataset-tag">Load Balancing</span></td>
+                <td class="improvement-high">93.8%</td>
+                <td class="improvement-high">100%</td>
+                <td class="improvement-neutral">0.0%</td>
+                <td class="improvement-high">100%</td>
+              </tr>
+              <tr>
+                <td class="dataset-cell"><strong>IP</strong> <span class="dataset-tag">Item Placement</span></td>
+                <td class="improvement-high">71.6%</td>
+                <td class="improvement-high">74.9%</td>
+                <td class="improvement-med">48.1%</td>
+                <td class="improvement-high">100%</td>
+              </tr>
+              <tr>
+                <td class="dataset-cell"><strong>MIPLIB</strong> <span class="dataset-tag">Standard</span></td>
+                <td class="improvement-low">0.4%</td>
+                <td class="improvement-low">0.5%</td>
+                <td class="improvement-low">0.6%</td>
+                <td class="improvement-low">0.3%</td>
+              </tr>
+              <tr class="average-row">
+                <td class="dataset-cell"><strong>Average</strong></td>
+                <td class="avg-cell">47.2%</td>
+                <td class="avg-cell">23.7%</td>
+                <td class="avg-cell">30.8%</td>
+                <td class="avg-cell">37.5%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="table-legend compact">
+          <div class="legend-item">
+            <span class="legend-box high"></span>
+            <span>&gt;50% improvement</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-box med"></span>
+            <span>10-50% improvement</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-box low"></span>
+            <span>0-10% improvement</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-box neutral"></span>
+            <span>Tied for best</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Benchmark Tags -->
+      <div class="benchmark-section">
+        <h3 class="benchmark-title">Datasets Covered</h3>
+        <div class="benchmark-tags">
+          <span class="b-tag">Combinatorial Auctions</span>
+          <span class="b-tag">Generalized Independent Set</span>
+          <span class="b-tag">Maximum Independent Set</span>
+          <span class="b-tag">Fixed-Charge Multi-Commodity Flow</span>
+          <span class="b-tag">Set Covering</span>
+          <span class="b-tag">Load Balancing</span>
+          <span class="b-tag">Item Placement</span>
+          <span class="b-tag">MIPLIB 2017</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Open Source CTA -->
+  <section class="fmip-section section-cta">
+    <div class="container">
+      <div class="cta-box">
+        <div class="cta-content">
+          <h2>Open Source & Ready to Use</h2>
+          <p>FMIP is freely available on GitHub. Try it on your MILP problems today!</p>
+          <a href="https://github.com/Lhongpei/FMIP" class="btn btn-cta" target="_blank">
+            <i class="fab fa-github"></i> View on GitHub
+          </a>
+        </div>
+        <div class="cta-decoration">
+          <i class="fas fa-code-branch"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BibTeX -->
+  <section class="fmip-section section-bibtex">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-tag">Citation</span>
+        <h2 class="section-title">BibTeX</h2>
+      </div>
+      <div class="bibtex-box">
+        <pre><code>@misc{li2025fmipjointcontinuousintegerflow,
+      title={FMIP: Joint Continuous-Integer Flow For Mixed-Integer Linear Programming}, 
+      author={Hongpei Li and Hui Yuan and Han Zhang and Jianghao Lin and Dongdong Ge and Mengdi Wang and Yinyu Ye},
+      year={2025},
+      eprint={2507.23390},
+      archivePrefix={arXiv},
+      primaryClass={math.OC},
+      url={https://arxiv.org/abs/2507.23390}, 
+}</code></pre>
+        <button class="copy-btn" onclick="copyBibTeX()">
+          <i class="fas fa-copy"></i> Copy
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="fmip-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <span class="footer-logo">FMIP</span>
+          <p>Joint Continuous-Integer Flow for MILP</p>
+        </div>
+        <div class="footer-links">
+          <a href="https://github.com/Lhongpei/FMIP" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://arxiv.org/pdf/2507.23390" target="_blank"><i class="fas fa-file-pdf"></i></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Built with <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top -->
+  <button class="scroll-top" onclick="scrollToTop()">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+</body>
+</html>
