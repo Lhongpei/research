@@ -706,6 +706,12 @@
   color: #a78bfa;
 }
 
+.venue-arxiv {
+  background: rgba(88, 5, 4, 0.15);
+  color: #fad7c4;
+}
+
+
 .topic-tag {
   display: inline-block;
   padding: 0.375rem 0.875rem;
